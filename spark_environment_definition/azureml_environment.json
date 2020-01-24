@@ -1,6 +1,6 @@
 {
     "name": "Custom-AzureML-PySpark-Environment",
-    "version": null,
+    "version": "5",
     "environmentVariables": {
         "EXAMPLE_ENV_VAR": "EXAMPLE_VALUE"
     },
@@ -15,7 +15,7 @@
         "baseImage": "mcr.microsoft.com/mmlspark/release",
         "baseDockerfile": null,
         "sharedVolumes": true,
-        "shmSize": "2g",
+        "shmSize": null,
         "arguments": [],
         "baseImageRegistry": {
             "address": "mcr.microsoft.com",
@@ -24,8 +24,26 @@
         }
     },
     "spark": {
-        "repositories": [],
-        "packages": [],
+        "repositories": [
+            "https://mmlspark.azureedge.net/maven"
+        ],
+        "packages": [
+            {
+                "group": "com.microsoft.ml.spark",
+                "artifact": "mmlspark_2.11",
+                "version": "0.15"
+            },
+            {
+                "group": "com.microsoft.azure",
+                "artifact": "azure-storage",
+                "version": "2.0.0"
+            },
+            {
+                "group": "org.apache.hadoop",
+                "artifact": "hadoop-azure",
+                "version": "2.7.0"
+            }
+        ],
         "precachePackages": true
     },
     "databricks": {
@@ -35,5 +53,5 @@
         "jarLibraries": [],
         "eggLibraries": []
     },
-    "inferencingStackVersion": null
+    "inferencingStackVersion": "latest"
 }
